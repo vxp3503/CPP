@@ -62,6 +62,28 @@ class solution{
             inorder(root->right);
         }
     }
+    void preorder(Node *root)
+    {
+        if(root==NULL){
+            return;
+        }
+        else{
+            cout<<root->data;
+            preorder(root->left);
+            preorder(root->right);
+        }
+    }
+    void postorder(Node *root)
+    {
+        if(root==NULL){
+            return;
+        }
+        else{
+            postorder(root->left);
+            postorder(root->right);
+            cout<<root->data;
+        }
+    }
 };
 
 
@@ -94,4 +116,10 @@ int main()
     }
     cout<<"Inorder Output"<<endl;
     operation.inorder(root);
+    cout<<endl;
+    cout<<"Preorder Output"<<endl;
+    operation.preorder(root);
+    cout<<endl;
+    cout<<"Postorder Output"<<endl;
+    operation.postorder(root);
 }
