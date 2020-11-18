@@ -204,6 +204,23 @@ public:
             }
         }
     }
+    int hightoftree(Node *root)
+    {
+        if (root == NULL)
+        {
+            return -1;
+        }
+        int lefttree = hightoftree(root->left);
+        int righttree = hightoftree(root->right);
+        if (lefttree > righttree)
+        {
+            return lefttree+1;
+        }
+        else
+        {
+            return righttree+1;
+        }
+    }
     void inorder(Node *root)
     {
         if (root == NULL)
@@ -246,12 +263,12 @@ public:
 
     void print(Node *root)
     {
-        cout<<"Levelorder Output"<<endl;
+        cout << "Levelorder Output" << endl;
         levelorder(root);
-        cout<<endl;
-        cout<<"Reverse Levelorder Output"<<endl;
+        cout << endl;
+        cout << "Reverse Levelorder Output" << endl;
         reverselevelorder(root);
-        cout<<endl;
+        cout << endl;
         cout << "Inorder Output" << endl;
         inorder(root);
         cout << endl;
@@ -261,6 +278,8 @@ public:
         cout << "Postorder Output" << endl;
         postorder(root);
         cout << endl;
+        cout << "Hight Of Tree" << endl;
+        cout << hightoftree(root);
     }
 };
 
