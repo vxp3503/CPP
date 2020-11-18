@@ -214,11 +214,39 @@ public:
         int righttree = hightoftree(root->right);
         if (lefttree > righttree)
         {
-            return lefttree+1;
+            return lefttree + 1;
         }
         else
         {
-            return righttree+1;
+            return righttree + 1;
+        }
+    }
+    void mirror(Node *root)
+    {
+        if (root == NULL)
+        {
+            return;
+        }
+        else
+        {
+            queue<Node *> q;
+            Node *temp;
+            q.push(root);
+            while (!q.empty())
+            {
+                temp = q.front();
+                q.pop();
+                swap(temp->left, temp->right);
+                if (temp->left)
+                {
+                    q.push(temp->left);
+                }
+                if (temp->right)
+                {
+                    q.push(temp->right);
+                }
+            }
+            return;
         }
     }
     void inorder(Node *root)
@@ -260,7 +288,44 @@ public:
             cout << root->data;
         }
     }
-
+    int maximum(Node *root)
+    {
+        if (root == NULL)
+        {
+            return INT_MIN;
+        }
+        int MAX = root->data;
+        int left = maximum(root->left);
+        int right = maximum(root->right);
+        if (left > MAX)
+        {
+            MAX = left;
+        }
+        if (right > MAX)
+        {
+            MAX = right;
+        }
+        return MAX;
+    }
+    int minimum(Node *root)
+    {
+        if (root == NULL)
+        {
+            return INT_MAX;
+        }
+        int MIN = root->data;
+        int left = minimum(root->left);
+        int right = minimum(root->right);
+        if (left < MIN)
+        {
+            MIN = left;
+        }
+        if (right < MIN)
+        {
+            MIN = right;
+        }
+        return MIN;
+    }
     void print(Node *root)
     {
         cout << "Levelorder Output" << endl;
@@ -280,6 +345,9 @@ public:
         cout << endl;
         cout << "Hight Of Tree" << endl;
         cout << hightoftree(root);
+        cout << endl;
+        cout << "Maximum:" << maximum(root) << " "
+             << "Minimum:" << minimum(root) << endl;
     }
 };
 
@@ -319,4 +387,11 @@ int main()
     root = operation.deletion(root, data);
     cout << "After Deletion" << endl;
     operation.print(root);
+    cout << "Want Mirror of given tree Press 1 if not press 0" << endl;
+    cin >> data;
+    if (data == 1)
+    {
+        operation.mirror(root);
+        operation.print(root);
+    }
 }
