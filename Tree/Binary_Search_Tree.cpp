@@ -173,6 +173,18 @@ public:
         cout << hightoftree(root);
         cout << endl;
     }
+    Node *search(Node *root, int data)
+    {
+        if (root == NULL || root->data == data)
+        {
+            return root;
+        }
+        if (root->data < data)
+        {
+            return search(root->right, data);
+        }
+        return search(root->left, data);
+    }
 };
 int main()
 {
@@ -185,7 +197,6 @@ int main()
     {
         if (i == 0)
         {
-            cout << "root" << endl;
             cin >> data;
             root = operation.insert(root, data);
         }
@@ -196,4 +207,20 @@ int main()
         }
     }
     operation.print(root);
+    cout << "Press 1 if u want to search an element else press 0";
+    cin >> data;
+    if (data == 1)
+    {
+        cout << "Enter the value which u want to search";
+        cin >> data;
+        if (operation.search(root, data) != NULL)
+        {
+            cout << "Data is present in tree";
+        }
+        else
+        {
+            cout << "data is not present";
+        }
+    }
+    return 0;
 }
