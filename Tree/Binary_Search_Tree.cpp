@@ -172,6 +172,9 @@ public:
         cout << "Hight Of Tree" << endl;
         cout << hightoftree(root);
         cout << endl;
+        cout << "Paths of Tree" << endl;
+        printpaths(root);
+        cout << endl;
     }
     Node *search(Node *root, int data)
     {
@@ -184,6 +187,38 @@ public:
             return search(root->right, data);
         }
         return search(root->left, data);
+    }
+    void printpaths(Node *root)
+    {
+        int a[1000];
+        pathfinder(root, a, 0);
+    }
+    void pathfinder(Node *root, int path[], int len)
+    {
+        if (root == NULL)
+        {
+            return;
+        }
+        path[len] = root->data;
+        len++;
+        if (root->left == NULL && root->right == NULL)
+        {
+            printarrayofpath(path, len);
+        }
+        else
+        {
+            pathfinder(root->left, path, len);
+            pathfinder(root->right, path, len);
+        }
+    }
+    void printarrayofpath(int path[], int len)
+    {
+        int i;
+        for (i = 0; i < len; i++)
+        {
+            cout << path[i] << " ";
+        }
+        cout << endl;
     }
 };
 int main()
