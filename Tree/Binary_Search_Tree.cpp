@@ -220,6 +220,54 @@ public:
         }
         cout << endl;
     }
+    Node *deletion(Node *root, int data)
+    {
+        if (root == NULL)
+        {
+            return root;
+        }
+        if (root->data < data)
+        {
+            root->right = deletion(root->right, data);
+        }
+        else if (root->data > data)
+        {
+            root->left = deletion(root->left, data);
+        }
+        else if (root->left == NULL)
+        {
+            Node *temp = root->right;
+            delete root;
+            return temp;
+        }
+        else if (root->right == NULL)
+        {
+            Node *temp = root->left;
+            delete root;
+            return temp;
+        }
+        else
+        {
+            Node *parsucc = root;
+            Node *succ = root->right;
+            while (root->left != NULL)
+            {
+                parsucc = succ;
+                succ = succ->left;
+            }
+            if (parsucc != NULL)
+            {
+                parsucc->left = succ->right;
+            }
+            else
+            {
+                parsucc->right = succ->right;
+            }
+            root->data = succ->data;
+            delete succ;
+            return root;
+        }
+    }
 };
 int main()
 {
@@ -242,7 +290,7 @@ int main()
         }
     }
     operation.print(root);
-    cout << "Press 1 if u want to search an element else press 0";
+    cout << "Press 1 if u want to search an element, Press 2 if u want to delete an element else press 0";
     cin >> data;
     if (data == 1)
     {
@@ -257,5 +305,16 @@ int main()
             cout << "data is not present";
         }
     }
-    return 0;
+    if (data == 2)
+    {
+        cout << "Enter the value which u want to delete";
+        cin >> data;
+        operation.deletion(root, data);
+        cout << "Elements After Deletion" << endl;
+        operation.print(root);
+    }
+    else
+    {
+        return 0;
+    }
 }
