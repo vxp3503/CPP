@@ -268,6 +268,32 @@ public:
             return root;
         }
     }
+    bool isBSTUtil(struct Node *root, Node *&prev)
+    {
+        // traverse the tree in inorder fashion and
+        // keep track of prev node
+        if (root)
+        {
+            if (!isBSTUtil(root->left, prev))
+                return false;
+
+            // Allows only distinct valued nodes
+            if (prev != NULL && root->data <= prev->data)
+                return false;
+
+            prev = root;
+
+            return isBSTUtil(root->right, prev);
+        }
+
+        return true;
+    }
+
+    bool isBST(Node *root)
+    {
+        Node *prev = NULL;
+        return isBSTUtil(root, prev);
+    }
 };
 int main()
 {
@@ -290,7 +316,7 @@ int main()
         }
     }
     operation.print(root);
-    cout << "Press 1 if u want to search an element, Press 2 if u want to delete an element else press 0";
+    cout << "Press 1 if u want to search an element,Press 2 to check given tree is BST or NOT ,Press 3 if u want to delete an element else press 0";
     cin >> data;
     if (data == 1)
     {
@@ -306,6 +332,17 @@ int main()
         }
     }
     if (data == 2)
+    {
+        if (operation.isBST(root))
+        {
+            cout << "Yes Given Binary Tree is BST";
+        }
+        else
+        {
+            cout << "NO given tree is not BST";
+        }
+    }
+    if (data == 3)
     {
         cout << "Enter the value which u want to delete";
         cin >> data;
