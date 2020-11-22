@@ -331,7 +331,7 @@ int main()
             cout << "data is not present";
         }
     }
-    if (data == 2)
+    else if (data == 2)
     {
         if (operation.isBST(root))
         {
@@ -342,7 +342,7 @@ int main()
             cout << "NO given tree is not BST";
         }
     }
-    if (data == 3)
+    else if (data == 3)
     {
         cout << "Enter the value which u want to delete";
         cin >> data;
