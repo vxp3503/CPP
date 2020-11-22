@@ -29,10 +29,8 @@ public:
         {
             root->left = insert(root->left, data);
         }
-        if (data > root->data)
-        {
+        else
             root->right = insert(root->right, data);
-        }
         return root;
     }
     void levelorder(Node *root)
@@ -226,15 +224,17 @@ public:
         {
             return root;
         }
-        if (root->data < data)
-        {
-            root->right = deletion(root->right, data);
-        }
-        else if (root->data > data)
+        if (root->data > data)
         {
             root->left = deletion(root->left, data);
+            return root;
         }
-        else if (root->left == NULL)
+        else if (root->data < data)
+        {
+            root->right = deletion(root->right, data);
+            return root;
+        }
+        if (root->left == NULL)
         {
             Node *temp = root->right;
             delete root;
@@ -250,12 +250,12 @@ public:
         {
             Node *parsucc = root;
             Node *succ = root->right;
-            while (root->left != NULL)
+            while (succ->left != NULL)
             {
                 parsucc = succ;
                 succ = succ->left;
             }
-            if (parsucc != NULL)
+            if (parsucc != root)
             {
                 parsucc->left = succ->right;
             }
@@ -346,7 +346,7 @@ int main()
     {
         cout << "Enter the value which u want to delete";
         cin >> data;
-        operation.deletion(root, data);
+        root = operation.deletion(root, data);
         cout << "Elements After Deletion" << endl;
         operation.print(root);
     }
