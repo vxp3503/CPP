@@ -28,7 +28,6 @@ class Graph{
 
 int main(){
     Graph g(4);
-    g.addedge(0,5);
-    g.addedge(0,6);
+    g.addedge(0,10);
     g.print();
 }
