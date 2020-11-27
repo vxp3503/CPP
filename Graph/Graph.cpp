@@ -12,23 +12,30 @@ class Graph{
     }
     void addedge(int V,int W){
         adj[V].push_back(W);
+        adj[W].push_back(V);
     }
     void print(){
         list <int>::iterator i;
-        i=adj[0].begin() ;
-        cout<<"0";
-        while(i!=adj[0].end()){
-            cout<<"->"<<*i;
-            i++;
+        for(int y=0;y<v;y++){
+            cout<<"head";
+            for(i=adj[y].begin();i!=adj[y].end();i++)
+            {
+                cout<<"->"<<*i;
+            }
+            cout<<endl;
         }
-
     }
 };
 
 
 int main(){
-    Graph g(4);
-    g.addedge(0,5);
-    g.addedge(0,6);
+    Graph g(5);
+    g.addedge(0, 1); 
+    g.addedge(0, 4); 
+    g.addedge(1, 2); 
+    g.addedge(1, 3); 
+    g.addedge(1, 4); 
+    g.addedge(2, 3);
+    g.addedge(3, 4);
     g.print();
 }
