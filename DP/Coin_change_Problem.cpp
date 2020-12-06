@@ -5,24 +5,14 @@ using namespace std;
 
 int Count(int arr[], int m, int n)
 {
-    int table[n + 1][m];
-    int i, j, x, y;
-
-    for (i = 0; i <= n; i++)
-    {
-        for (j = 0; j < m; j++)
-        {
-            if (i == 0)
-            {
-                table[0][j] = 1;
-                continue;
-            }
-            x = (i - arr[j] >= 0) ? table[i - arr[j]][j] : 0;
-            y = (j - 1 >= 0) ? table[i][j - 1] : 0;
-            table[i][j] = x + y;
+    vector<int>dp(n+1,0);
+    dp[0]=1;
+    for(int i=0;i< m;i++){
+        for(int j=arr[i];j<dp.size();j++){
+            dp[j]+=dp[j-arr[i]];
         }
     }
-    return table[n][m - 1];
+    return dp[n];
 }
 
 int main()
