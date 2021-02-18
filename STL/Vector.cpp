@@ -8,4 +8,5 @@ int main()
         V.push_back(i);
         cout<<V.size()<<" "<<V.capacity()<< endl;
     }
+    cout<<"used to allocate size"<<vec.reserve(1000);
 }
