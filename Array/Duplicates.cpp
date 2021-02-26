@@ -13,6 +13,7 @@ int main()
         a.push_back(item);
     }
     sort(a.begin(),a.end());
+    cout<<"Repeating elements are";
     for(int i=0;i<n;i++)
     {
         if(i>0&&a[i]==a[i-1])
