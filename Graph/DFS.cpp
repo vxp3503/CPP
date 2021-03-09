@@ -57,12 +57,11 @@ class Graph{
 
 
 int main(){
-    Graph g(4);
-    g.addedge(0, 1);
+    Graph g(5); // Total 5 vertices in graph
+    g.addedge(1, 0);
     g.addedge(0, 2);
-    g.addedge(1, 2);
-    g.addedge(2, 0);
-    g.addedge(2, 3);
-    g.addedge(3, 3);
-    g.DFS(2);
+    g.addedge(2, 1);
+    g.addedge(0, 3);
+    g.addedge(1, 4);
+    g.DFS(0);
 }
