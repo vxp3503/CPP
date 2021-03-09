@@ -14,9 +14,11 @@ class Graph{
         adj[V].push_back(W);
         adj[W].push_back(V);
     }
-    void print(){
+    void print()
+    {
         list <int>::iterator i;
-        for(int y=0;y<v;y++){
+        for(int y=0;y<v;y++)
+        {
             cout<<"head";
             for(i=adj[y].begin();i!=adj[y].end();i++)
             {
