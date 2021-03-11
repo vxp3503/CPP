@@ -25,6 +25,7 @@ class Graph{
             pair<int,int> temp=*s.begin();
             s.erase(s.begin());
             int u=temp.second;
+            int j=0;
             for(auto i=adj[u].begin();i!=adj[u].end();i++)
             {
                 int v =(*i).first;
@@ -34,9 +35,9 @@ class Graph{
                     if(dist[v]!=INF)
                     {
                         s.erase(s.find(make_pair(dist[v],v)));
-                        dist[v]=dist[u]+weight;
-                        s.insert(make_pair(dist[v],v));
                     }
+                    dist[v]=dist[u]+weight;
+                    s.insert(make_pair(dist[v],v));
                 }
             } 
         }
